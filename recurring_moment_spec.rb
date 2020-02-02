@@ -83,7 +83,8 @@ describe RecurringMoment do
         let (:interval) { 2 }
 
         dates.each do |start|
-          it "correctly matches a two week interval from #{start.strftime('%D')}" do
+          it "correctly matches a two week interval from #{start
+          }" do
             recurrence = RecurringMoment.new(period: period, interval: interval, start: start)
             expect(recurrence.match(start.advance(weeks: 2))).to eq true
             expect(recurrence.match(start.advance(weeks: 4))).to eq true
