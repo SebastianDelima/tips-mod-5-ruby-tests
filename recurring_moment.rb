@@ -17,23 +17,32 @@ class RecurringMoment
 
   def match(date)
     current = @start
-    # binding.pry
-
     while current < date
 
-      if current == date
-        return true
-      end
+      # if current == date
+      #   return true
+      # end
   
       if @period == 'weekly' #HA HA changing weekly to monthly @im-so-mad-right-now 
         current = current.advance(weeks: @interval)
+        if current < date 
+          @interval += 1
+          current = @start
+        end
    
       elsif @period == 'monthly'#equal sign was setting not comparing
         current = current.advance(months: @interval)
+        if current < date 
+          @interval += 1
+          current = @start
+        end
 
       elsif @period == 'daily'
         current = current.advance(days: @interval)
-     
+        if current < date 
+          @interval += 1
+          current = @start
+        end
       end
     end
    #loop meeting criteria doesnt go back to evaluate again so if match is found
